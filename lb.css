@@ -1,0 +1,124 @@
+/* ใช้ Mali เป็นฟอนต์หลัก */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Mali', cursive, "Noto Sans Thai", sans-serif;
+  scroll-behavior: smooth;
+  background: url('https://www.kkday.com/th/blog/wp-content/uploads/Japan_Yamanashi__AFotolia_80232378.jpg') center/cover fixed no-repeat;
+}
+
+.container {
+  text-align: center;
+}
+.block {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-shadow: 0 0 20px rgba(0,0,0,0.7);
+}
+
+/* Animation ข้อความ */
+.text, .btn {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+.show {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.text {
+  font-size: clamp(28px, 6vw, 70px);
+}
+
+/* ปุ่ม */
+.btn {
+  margin-top: 20px;
+  background: linear-gradient(135deg, #ff6cab, #ff4d6d 40%, #ffa36c);
+  border: none;
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255,77,109,0.7), 0 0 50px rgba(255,77,109,0.5);
+  transition: transform .3s, box-shadow .3s;
+}
+.btn:hover { transform: scale(1.1); }
+.btn:active { transform: scale(0.95); }
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,0.8);
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .8s ease;
+}
+.overlay.show { opacity: 1; pointer-events: auto; }
+
+/* love text */
+.love-text {
+  font-size: clamp(40px, 8vw, 95px);
+  font-weight: 900;
+  background: linear-gradient(180deg, #fff, #ffd6e9 60%, #ffb3d9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 30px rgba(255,100,150,0.9), 0 0 60px rgba(255,80,120,0.7);
+  opacity: 0;
+  transform: scale(0.6);
+  animation: popIn .8s forwards, pulseGlow 2.5s infinite ease-in-out 1s;
+  text-align: center;
+}
+@keyframes popIn {
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes pulseGlow {
+  0%,100% { text-shadow: 0 0 20px rgba(255,120,170,0.8), 0 0 40px rgba(255,90,130,0.7); }
+  50% { text-shadow: 0 0 40px rgba(255,160,200,1), 0 0 80px rgba(255,120,160,0.9); }
+}
+
+/* hearts */
+.hearts {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 11;
+}
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  transform: rotate(45deg);
+  background: red;
+  animation: floatUp linear forwards;
+  border-radius: 4px;
+}
+.heart::before, .heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: inherit;
+  left: -10px;
+  top: 0;
+}
+.heart::after { left: 0; top: -10px; }
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) rotate(45deg) scale(1); opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: translateY(-120vh) rotate(45deg) scale(0.6); opacity: 0; }
+}
